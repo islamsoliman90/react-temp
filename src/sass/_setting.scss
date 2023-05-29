@@ -1,0 +1,123 @@
+/* Start Settings Box */
+.settings-box {
+  position: fixed;
+  left: -200px;
+  top: 0;
+  background-color: #fff;
+  width: 200px;
+  z-index: 1000;
+  min-height: 100vh;
+  transition: 0.3s;
+  border: 1px solid #eee;
+
+  &.open {
+    left: 0;
+  }
+
+  .toggle-settings {
+    position: absolute;
+    right: -30px;
+    top: 100px;
+    background-color: #fff;
+    text-align: center;
+    cursor: pointer;
+
+    .fa-gear {
+      width: 26px;
+      padding: 6px 1px;
+      margin-left: 10px;
+
+      &.animation {
+        animation: animatGear 3s infinite;
+      }
+    }
+  }
+
+  .option-box {
+    padding: 10px;
+    text-align: center;
+    background-color: #eee;
+    margin: 10px;
+
+    h4 {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .colors-list {
+      list-style: none;
+      text-align: center;
+      padding: 0;
+      margin: 10px 0 0;
+
+      li {
+        width: 24px;
+        height: 24px;
+        background-color: #333;
+        border-radius: 50%;
+        cursor: pointer;
+        display: inline-block;
+        border: 3px solid #eee;
+
+        &.active {
+          border-color: #fff;
+        }
+
+        &:first-child {
+          background-color: #ff9800;
+        }
+
+        &:nth-child(2) {
+          background-color: #e91e63;
+        }
+
+        &:nth-child(3) {
+          background-color: #009688;
+        }
+
+        &:nth-child(4) {
+          background-color: #03a9f4;
+        }
+
+        &:nth-child(5) {
+          background-color: #4caf50;
+        }
+      }
+    }
+
+    .yes,
+    .no {
+      width: 50px;
+      background-color: var(--main-color);
+      color: #fff;
+      margin-top: 10px;
+      display: inline-block;
+      font-size: 12px;
+      padding: 4px 10px;
+      font-weight: bold;
+      border-radius: 4px;
+      opacity: 0.5;
+      cursor: pointer;
+    }
+
+    span.active {
+      opacity: 1;
+    }
+  }
+
+  .reset-options {
+    background-color: #f44336;
+    border: none;
+    width: 178px;
+    margin: 10px auto;
+    display: block;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}
+
+/* End Settings Box */

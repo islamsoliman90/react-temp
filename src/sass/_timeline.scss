@@ -1,0 +1,108 @@
+/* Start Timeline */
+.timeline {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: #eee;
+
+  .timeline-content {
+    position: relative;
+    overflow: hidden;
+    &:before {
+      content: "";
+      width: 2px;
+      height: 100%;
+      background-color: var(--main-color);
+      position: absolute;
+      left: 50%;
+      margin-left: -1px;
+      top: 0;
+      .year {
+        margin: 20px auto;
+        width: 50px;
+        background-color: var(--main-color);
+        position: relative;
+        z-index: 2;
+        border-radius: 4px;
+        text-align: center;
+        color: #fff;
+        padding: 2px 5px;
+        font-weight: bold;
+      }
+    }
+    .left,
+    .right {
+      width: calc(50% - 25px);
+      margin-bottom: 40px;
+      position: relative;
+      @media (max-width: 767px) {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      &::before {
+        content: "";
+        width: 14px;
+        height: 14px;
+        background-color: #fff;
+        border: 3px solid var(--main-color);
+        position: absolute;
+        border-radius: 50%;
+        top: 20px;
+        @media (max-width: 767px) {
+          display: none;
+        }
+      }
+    }
+
+    .left {
+      float: left;
+      &:before {
+        right: -35px;
+      }
+    }
+    .right {
+      float: right;
+      &:before {
+        left: -35px;
+      }
+    }
+    .content {
+      padding: 20px;
+      background-color: #fff;
+      h3 {
+        font-weight: bold;
+        color: var(--main-color);
+        margin: 0 0 10px;
+      }
+      p {
+        color: #666;
+        margin: 0;
+        line-height: 1.6;
+      }
+    }
+  }
+  .left .content:before {
+    content: "";
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent transparent #fff;
+    height: 0;
+    width: 0;
+    position: absolute;
+    right: -20px;
+    top: 20px;
+  }
+
+  .right .content:before {
+    content: "";
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent #fff transparent transparent;
+    height: 0;
+    width: 0;
+    position: absolute;
+    left: -20px;
+    top: 20px;
+  }
+}
+
+/* End Timeline */

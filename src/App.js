@@ -9,50 +9,44 @@ import Sittings from "./components/sittings";
 import Skills from "./components/skills";
 import Testimoials from "./components/teastimoials";
 import Timeline from "./components/timeline";
-// import "./css/bootstrap.min.css";
-import "./css/master.css";
+import "./css/index.css";
 
-
-function App ()
-{
-  let [ mainColors, setMainColors ] = React.useState( "#FF9800" );
-  let [ showbullets, setShowbullets ] = React.useState( true );
-  let [ randomBackground, setRandomBackground ] = React.useState( true );
+function App() {
+  let [mainColors, setMainColors] = React.useState("#FF9800");
+  let [showbullets, setShowbullets] = React.useState(true);
+  let [randomBackground, setRandomBackground] = React.useState(true);
   let setting = {
-    "color": mainColors,
-    "showbull": showbullets,
-    "random": randomBackground
+    color: mainColors,
+    showbull: showbullets,
+    random: randomBackground,
   };
-  React.useEffect( () =>
-  {
-    if ( localStorage.getItem( "option" ) )
-    {
-      setting = JSON.parse( localStorage.getItem( "option" ) );
-      setMainColors( setting.color );
-      setShowbullets( setting.showbull );
-      setRandomBackground( setting.random );
+  React.useEffect(() => {
+    if (localStorage.getItem("option")) {
+      setting = JSON.parse(localStorage.getItem("option"));
+      setMainColors(setting.color);
+      setShowbullets(setting.showbull);
+      setRandomBackground(setting.random);
     }
-    localStorage.setItem( "option", JSON.stringify( setting ) );
-    return () => localStorage.removeItem( "option" );
-  }, [ setting ] );
-
+    localStorage.setItem("option", JSON.stringify(setting));
+    return () => localStorage.removeItem("option");
+  }, [setting]);
 
   let styles = {
     "--main-color": mainColors,
   };
   return (
-    <div className="App" style={ styles }>
+    <div className="App" style={styles}>
       <Sittings
-        setmaincolor={ setMainColors }
-        maincolor={ mainColors }
-        setShowbullets={ setShowbullets }
-        showbullets={ showbullets }
-        setRandomBackground={ setRandomBackground }
-        randomBackground={ randomBackground }
-        settng={ setting }
+        setmaincolor={setMainColors}
+        maincolor={mainColors}
+        setShowbullets={setShowbullets}
+        showbullets={showbullets}
+        setRandomBackground={setRandomBackground}
+        randomBackground={randomBackground}
+        settng={setting}
       />
-      <Bullets setShowbullets={ setShowbullets } showbullet={ showbullets } />
-      <Landing randomBackground={ randomBackground } />
+      <Bullets setShowbullets={setShowbullets} showbullet={showbullets} />
+      <Landing randomBackground={randomBackground} />
       <About />
       <Skills />
       <Gallery />
