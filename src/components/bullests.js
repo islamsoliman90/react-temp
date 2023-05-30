@@ -1,6 +1,9 @@
+import { useGlobalContext } from "../context";
+
 export default function Bullets(props) {
+  let { showbullet } = useGlobalContext();
   let style;
-  if (props.showbullet) {
+  if (showbullet) {
     style = {
       display: "block",
     };

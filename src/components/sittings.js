@@ -1,19 +1,45 @@
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { useGlobalContext } from "../context";
 export default function Sittings(props) {
+  let {
+    showbullet,
+    randBackground,
+    activeBullets,
+    offBullets,
+    activeBackground,
+    offBackground,
+    setmaincolor,
+    maincolor,
+  } = useGlobalContext();
   let [open, setopen] = React.useState(false);
   function setcolor(color) {
-    props.setmaincolor(() => color);
+    maincolor(() => color);
   }
   function activecolor(dataSetColor) {
-    return dataSetColor === props.maincolor ? "active" : "";
+    return dataSetColor === maincolor ? "active" : "";
   }
   function resetOption() {
-    props.setShowbullets(true);
-    props.setRandomBackground(true);
-    setcolor("#FF9800");
+    activeBullets();
+    activeBackground();
+    setmaincolor("#FF9800");
   }
+  let setting = {
+    color: maincolor,
+    showbull: showbullet,
+    random: randBackground,
+  };
+  React.useEffect(() => {
+    if (localStorage.getItem("option")) {
+      setting = JSON.parse(localStorage.getItem("option"));
+      setmaincolor(setting.color);
+      setting.showbull ? activeBullets() : offBullets();
+      setting.random ? activeBackground() : offBackground();
+    }
+    localStorage.setItem("option", JSON.stringify(setting));
+    return () => localStorage.removeItem("option");
+  }, [setting]);
   return (
     <div
       class="settings-box"
@@ -30,35 +56,35 @@ export default function Sittings(props) {
               className={activecolor("#FF9800")}
               data-color="#FF9800"
               onClick={(e) => {
-                setcolor(e.target.dataset.color);
+                setmaincolor(e.target.dataset.color);
               }}
             ></li>
             <li
               className={activecolor("#E91E63")}
               data-color="#E91E63"
               onClick={(e) => {
-                setcolor(e.target.dataset.color);
+                setmaincolor(e.target.dataset.color);
               }}
             ></li>
             <li
               className={activecolor("#009688")}
               data-color="#009688"
               onClick={(e) => {
-                setcolor(e.target.dataset.color);
+                setmaincolor(e.target.dataset.color);
               }}
             ></li>
             <li
               className={activecolor("#03A9F4")}
               data-color="#03A9F4"
               onClick={(e) => {
-                setcolor(e.target.dataset.color);
+                setmaincolor(e.target.dataset.color);
               }}
             ></li>
             <li
               className={activecolor("#4CAF50")}
               data-color="#4CAF50"
               onClick={(e) => {
-                setcolor(e.target.dataset.color);
+                setmaincolor(e.target.dataset.color);
               }}
             ></li>
           </ul>
@@ -67,16 +93,16 @@ export default function Sittings(props) {
           <h4>Random Backgrounds</h4>
           <div class="random-backgrounds">
             <span
-              className={props.randomBackground ? "yes active" : "yes"}
+              className={randBackground ? "yes active" : "yes"}
               data-background="yes"
-              onClick={() => props.setRandomBackground(!props.randomBackground)}
+              onClick={() => activeBackground()}
             >
               Yes
             </span>
             <span
-              className={props.randomBackground ? "no " : "no active"}
+              className={randBackground ? "no " : "no active"}
               data-background="no"
-              onClick={() => props.setRandomBackground(!props.randomBackground)}
+              onClick={() => offBackground()}
             >
               No
             </span>
@@ -86,16 +112,16 @@ export default function Sittings(props) {
           <h4>Show Bullets</h4>
           <div class="bullets-option">
             <span
-              className={props.showbullets ? "yes active" : "yes"}
+              className={showbullet ? "yes active" : "yes"}
               data-display="show"
-              onClick={() => props.setShowbullets(!props.showbullets)}
+              onClick={() => activeBullets()}
             >
               Yes
             </span>
             <span
-              className={props.showbullets ? "no " : "no active"}
+              className={showbullet ? "no " : "no active"}
               data-display="hide"
-              onClick={() => props.setShowbullets(!props.showbullets)}
+              onClick={() => offBullets()}
             >
               No
             </span>

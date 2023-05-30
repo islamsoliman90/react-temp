@@ -1,5 +1,8 @@
 import React from "react";
+import { useGlobalContext } from "../context";
 export default function Landing(props) {
+  const { randBackground } = useGlobalContext();
+
   let [images, setimages] = React.useState({});
   let imgsArray = [
     "01.jpg",
@@ -14,7 +17,7 @@ export default function Landing(props) {
   // let interval;
   React.useEffect(() => {
     let interval;
-    if (props.randomBackground) {
+    if (randBackground) {
       interval = setInterval(() => {
         // Get Random Number
         let randomNumber = Math.floor(Math.random() * imgsArray.length);
@@ -27,7 +30,7 @@ export default function Landing(props) {
       }, 10000);
       return () => clearInterval(interval);
     } else return clearInterval(interval);
-  }, [props.randomBackground]);
+  }, [randBackground]);
   //open toggale
   let [open, setOpen] = React.useState(false);
 
