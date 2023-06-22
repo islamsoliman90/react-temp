@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Skills() {
   let [show, setShow] = React.useState(false);
-  let scrollY = React.useRef(0);
+  // let scrollY = React.useRef(0);
   React.useEffect(() => {
     window.addEventListener("scroll", () => {
       let skills = document.getElementById("skills");
